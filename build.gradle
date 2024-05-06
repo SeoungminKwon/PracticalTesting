@@ -35,7 +35,7 @@ dependencies {
     //h2
     runtimeOnly 'com.h2database:h2'
 
-    //test
+    //test - JUnit5, AssertJ 가 starter-test에 다 포함되어 있음
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
