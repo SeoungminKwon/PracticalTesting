@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import sample.cafekiosk.unit.beverage.Americano;
+import sample.cafekiosk.unit.beverage.Latte;
 
 class CafeKioskTest {
 
@@ -30,6 +31,18 @@ class CafeKioskTest {
         cafeKiosk.remove(americano);
         assertThat(cafeKiosk.getBeverages()).hasSize(0);
         //위의 코드랑 동일한 코드
+        assertThat(cafeKiosk.getBeverages()).isEmpty();
+    }
+
+    @Test
+    void clear() {
+        CafeKiosk cafeKiosk = new CafeKiosk();
+        cafeKiosk.add(new Americano());
+        cafeKiosk.add(new Latte());
+
+        assertThat(cafeKiosk.getBeverages()).hasSize(2);
+
+        cafeKiosk.clear();
         assertThat(cafeKiosk.getBeverages()).isEmpty();
     }
 
