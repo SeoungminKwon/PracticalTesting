@@ -19,6 +19,10 @@ public class CafeKiosk {
     }
 
     public int calculateTotalPrice() {
-        return 0;
+        int totalPrice = 0;
+        for (Beverage beverage : beverages) {
+            totalPrice += beverage.getPrice();
+        }
+        return totalPrice;
     }
 }
