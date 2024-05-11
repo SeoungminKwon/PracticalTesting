@@ -76,7 +76,7 @@ class CafeKioskTest {
         Americano americano = new Americano();
 
         cafeKiosk.add(americano);
-        Order order = cafeKiosk.createOrder();
+        Order order = cafeKiosk.createOrder(); //가게 운영시간만 테스트 성공함
 
         assertThat(order.getBeverages()).hasSize(1);
         assertThat(order.getBeverages().get(0).getName()).isEqualTo("아메리카노");
