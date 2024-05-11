@@ -96,4 +96,17 @@ class CafeKioskTest {
         assertThat(order.getBeverages().get(0).getName()).isEqualTo("아메리카노");
     }
 
+    @Test
+    void createOrderOutsideOpenTime() {
+        CafeKiosk cafeKiosk = new CafeKiosk();
+        Americano americano = new Americano();
+
+        cafeKiosk.add(americano);
+        //10시 경계값
+        assertThatThrownBy(() -> cafeKiosk.createOrder(LocalDateTime.of(2024, 5, 11, 9, 59)))
+                .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage("주문 시간이 아닙니다. 관리자에게 문의하세요");
+
+    }
+
 }
