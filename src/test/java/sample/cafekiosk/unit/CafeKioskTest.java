@@ -1,6 +1,7 @@
 package sample.cafekiosk.unit;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -30,6 +31,16 @@ class CafeKioskTest {
         //같은 종류의 음료를 여러잔 주문한 경우 테스트
         assertThat(cafeKiosk.getBeverages().get(0)).isEqualTo(americano);
         assertThat(cafeKiosk.getBeverages().get(1)).isEqualTo(americano);
+    }
+
+    @Test
+    void addZeroBeverages() {
+        CafeKiosk cafeKiosk = new CafeKiosk();
+        Americano americano = new Americano();
+
+        assertThatThrownBy(() -> cafeKiosk.add(americano, 0)) //어떤 상황
+                .isInstanceOf(IllegalStateException.class) //어떤 예외가 발생한다.
+                .hasMessage("음료는 1잔 이상 주문하실 수 있습니다."); //어떤 예외에 어떤 메시지인지
     }
 
     @Test
