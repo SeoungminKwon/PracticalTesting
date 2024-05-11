@@ -15,6 +15,12 @@ public class CafeKiosk {
         beverages.add(beverage);
     }
 
+    public void add(Beverage beverage, int count) {
+        for (int i = 0; i < count; i++) {
+            beverages.add(beverage);
+        }
+    }
+
     public void remove(Beverage beverage) {
         beverages.remove(beverage);
     }
