@@ -21,6 +21,18 @@ class CafeKioskTest {
     }
 
     @Test
+    void addSeveralBeverages() {
+        CafeKiosk cafeKiosk = new CafeKiosk();
+        Americano americano = new Americano();
+
+        cafeKiosk.add(americano, 2);
+
+        //같은 종류의 음료를 여러잔 주문한 경우 테스트
+        assertThat(cafeKiosk.getBeverages().get(0)).isEqualTo(americano);
+        assertThat(cafeKiosk.getBeverages().get(1)).isEqualTo(americano);
+    }
+
+    @Test
     void remove() {
         CafeKiosk cafeKiosk = new CafeKiosk();
         Americano americano = new Americano();
