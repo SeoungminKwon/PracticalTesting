@@ -22,4 +22,11 @@ public class Product {
 
     @Enumerated(EnumType.STRING)
     private ProductType type;
+
+    @Enumerated(EnumType.STRING)
+    private ProductSellingType sellingType;
+
+    private String name;
+
+    private int price;
 }
