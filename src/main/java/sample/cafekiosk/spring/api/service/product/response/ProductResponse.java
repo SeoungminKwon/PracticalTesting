@@ -21,7 +21,7 @@ public class ProductResponse {
      * 클래스에 Builder를 붙히면, 모든 필드를 요구하는 빌더가 만들어짐
      */
     @Builder
-    public ProductResponse(Long id, String productNumber, ProductType type, ProductSellingType sellingType, String name,
+    private ProductResponse(Long id, String productNumber, ProductType type, ProductSellingType sellingType, String name,
                            int price) {
         this.id = id;
         this.productNumber = productNumber;
