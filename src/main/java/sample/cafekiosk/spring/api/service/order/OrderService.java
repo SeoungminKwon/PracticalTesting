@@ -1,5 +1,6 @@
 package sample.cafekiosk.spring.api.service.order;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,13 @@ public class OrderService {
 
     private final ProductRepository productRepository;
 
-    public OrderResponse createOrder(OrderCreateRequest request) {
+    public OrderResponse createOrder(OrderCreateRequest request, LocalDateTime registeredDateTime) {
         List<String> productNumbers = request.getProductNumbers();
         //Product
         List<Product> products = productRepository.findALlByProductNumberIn(productNumbers);
 
         //Order
-        Order order = Order.create(products);
+        Order order = Order.create(products, registeredDateTime);
 
         return null;
     }

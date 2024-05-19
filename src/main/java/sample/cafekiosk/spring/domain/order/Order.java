@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,14 +42,20 @@ public class Order extends BaseEntity {
     private List<OrderProduct> orderProducts = new ArrayList<>();
 
     //단위테스트를 작성할 시간, Order의 초기 상태, totalPrice, 등록시간에 대한 테스트가 필요할 것 같음
-    public Order(List<Product> products) {
+    public Order(List<Product> products, LocalDateTime registeredDateTime) {
         this.orderStatus = OrderStatus.INIT;
         this.totalPrice = calculateTotalPrice(products);
 
+        //LocalDateTime.now()는 굉장히 테스트하기 어렵게 하는 존재다, 매개변수로 빼주자
+        this.registeredDateTime = registeredDateTime;
+        this.orderProducts = products.stream()
+                                     .map(product -> new OrderProduct(this, product))
+                                     .collect(Collectors.toList());
+
     }
 
-    public static Order create(List<Product> products) {
-        return new Order(products);
+    public static Order create(List<Product> products, LocalDateTime registeredDateTime) {
+        return new Order(products, registeredDateTime);
     }
 
     private int calculateTotalPrice(List<Product> products) {
