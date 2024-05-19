@@ -15,6 +15,10 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles("test") //test 코드 실행시 TEST profile로 실행이됨
 //@SpringBootTest //SpringBoot 를 띄워서 테스트하게 도와줌
 @DataJpaTest //JPA 관련된 빈들만 띄워서 테스트를 진행함 -> SpringBootTest보다 속도가 빠름
+/**
+ * @DataJpaTest는 내부에 @Transactional이 걸려있어 자동으로 롤백이 됨
+ * @SpringBootTest는 @Transactional이 안걸려있어 자동으로 록백되지 않음
+ */
 class ProductRepositoryTest {
 
     @Autowired
