@@ -30,6 +30,23 @@ class OrderTest {
 
     }
 
+    @DisplayName("주문 생성 시 주문 상태는 INIT이다. ")
+    @Test
+    public void init(){
+        //given
+        List<Product> products = List.of(
+                createProduct("001", 1000),
+                createProduct("002", 2000)
+        );
+
+        //when
+        Order order = Order.create(products);
+
+        //then
+        assertThat(order.getOrderStatus()).isEqualByComparingTo(OrderStatus.INIT); //isEqualByComparingTo : Enum 그 자체로 값을 비교
+
+    }
+
 
     //Builder로 Product를 만드니 너무 길다. -> 이런 걸 도와주는 메서드
     private Product createProduct(String productNumber, int price) {

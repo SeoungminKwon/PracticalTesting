@@ -43,13 +43,17 @@ public class Order extends BaseEntity {
     //단위테스트를 작성할 시간, Order의 초기 상태, totalPrice, 등록시간에 대한 테스트가 필요할 것 같음
     public Order(List<Product> products) {
         this.orderStatus = OrderStatus.INIT;
-        this.totalPrice = products.stream()
-                                  .mapToInt(Product::getPrice)
-                                  .sum();
+        this.totalPrice = calculateTotalPrice(products);
 
     }
 
     public static Order create(List<Product> products) {
         return new Order(products);
+    }
+
+    private int calculateTotalPrice(List<Product> products) {
+        return products.stream()
+                       .mapToInt(Product::getPrice)
+                       .sum();
     }
 }
