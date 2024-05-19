@@ -32,6 +32,7 @@ class OrderServiceTest {
     @DisplayName("주문번호 리스트를 받아 주문을 생성한다.")
     @Test
     public void createOrder(){
+
         //given
         LocalDateTime registeredDateTime = LocalDateTime.now();
 
