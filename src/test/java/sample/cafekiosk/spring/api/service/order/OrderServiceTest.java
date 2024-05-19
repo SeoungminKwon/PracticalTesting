@@ -2,10 +2,7 @@ package sample.cafekiosk.spring.api.service.order;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
-import static org.junit.jupiter.api.Assertions.*;
-import static sample.cafekiosk.spring.domain.product.ProductSellingType.HOLD;
 import static sample.cafekiosk.spring.domain.product.ProductSellingType.SELLING;
-import static sample.cafekiosk.spring.domain.product.ProductSellingType.STOP_SELLING;
 import static sample.cafekiosk.spring.domain.product.ProductType.HANDMADE;
 
 import java.time.LocalDateTime;
@@ -13,7 +10,6 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import sample.cafekiosk.spring.api.controller.order.request.OrderCreateRequest;
 import sample.cafekiosk.spring.api.service.order.response.OrderResponse;
@@ -45,7 +41,7 @@ class OrderServiceTest {
                                              .build();
 
         //when
-        OrderResponse orderResponse = orderService.createOrder(request);
+        OrderResponse orderResponse = orderService.createOrder(request, LocalDateTime.now());
 
         //then
         assertThat(orderResponse.getId()).isNotNull(); //ID는 값이 들어있는게 중요함
