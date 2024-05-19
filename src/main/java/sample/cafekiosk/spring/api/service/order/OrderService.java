@@ -24,6 +24,6 @@ public class OrderService {
         //Order
         Order order = Order.create(products, registeredDateTime);
 
-        return null;
+        return OrderResponse.of(order);
     }
 }
