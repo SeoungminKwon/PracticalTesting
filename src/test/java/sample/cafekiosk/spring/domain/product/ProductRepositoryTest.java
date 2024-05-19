@@ -66,6 +66,48 @@ class ProductRepositoryTest {
          * containsExactly : 정확하게 순서까지 맞는지 검증
          * containsExactlyInAnyOrder : 순서 상관없이 확인을 해줌
          */
+    }
 
+    @DisplayName("상품 번호 리스트로 상품들을 조회한다. ")
+    @Test
+    public void findALlByProductNumberIn(){
+        //given
+        Product product1 = Product.builder()
+                                   .productNumber("001")
+                                   .type(HANDMADE)
+                                   .sellingStatus(SELLING)
+                                   .name("아메리카노")
+                                   .price(4000)
+                                   .build();
+
+        Product product2 = Product.builder()
+                                   .productNumber("002")
+                                   .type(HANDMADE)
+                                   .sellingStatus(HOLD)
+                                   .name("카페라떼")
+                                   .price(4500)
+                                   .build();
+
+        Product product3 = Product.builder()
+                                   .productNumber("003")
+                                   .type(HANDMADE)
+                                   .sellingStatus(STOP_SELLING)
+                                   .name("팥빙수")
+                                   .price(7000)
+                                   .build();
+        productRepository.saveAll(List.of(product1, product2, product3));
+
+        //when
+        List<Product> products = productRepository.findALlByProductNumberIn(List.of("001", "002"));
+
+        //then
+
+        //강사님은 리스트에 대한 검증을 이렇게 보통함
+        assertThat(products).hasSize(2)
+                .extracting("productNumber", "name", "sellingStatus") //검증하고자 하는 필드만 추출가능
+                .containsExactlyInAnyOrder(
+                        tuple("001", "아메리카노", SELLING),
+                        tuple("002", "카페라떼", HOLD)
+                );
     }
 }
