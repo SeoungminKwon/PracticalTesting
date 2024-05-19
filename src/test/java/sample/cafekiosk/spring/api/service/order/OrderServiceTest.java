@@ -31,6 +31,8 @@ class OrderServiceTest {
     @Test
     public void createOrder(){
         //given
+        LocalDateTime registeredDateTime = LocalDateTime.now();
+
         Product product1 = createProduct(HANDMADE, "001", 1000);
         Product product2 = createProduct(HANDMADE, "002", 3000);
         Product product3 = createProduct(HANDMADE, "003", 5000);
@@ -41,7 +43,7 @@ class OrderServiceTest {
                                              .build();
 
         //when
-        OrderResponse orderResponse = orderService.createOrder(request, LocalDateTime.now());
+        OrderResponse orderResponse = orderService.createOrder(request, registeredDateTime);
 
         //then
         assertThat(orderResponse.getId()).isNotNull(); //ID는 값이 들어있는게 중요함
