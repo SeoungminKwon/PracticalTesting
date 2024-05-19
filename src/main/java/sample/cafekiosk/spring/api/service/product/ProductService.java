@@ -16,10 +16,13 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public List<ProductResponse> getSellingProducts() {
-        List<Product> products = productRepository.findALlBySellingTypeIn(ProductSellingType.forDisplay());
+        List<Product> products = productRepository.findALlBySellingStatusIn(ProductSellingType.forDisplay());
 
+        List<ProductResponse> collect = products.stream()
+                                                .map(ProductResponse::of)
+                                                .collect(Collectors.toList());
         return products.stream()
-                .map(product -> ProductResponse.of(product))
-                .collect(Collectors.toList());
+                       .map(ProductResponse::of)
+                       .collect(Collectors.toList());
     }
 }

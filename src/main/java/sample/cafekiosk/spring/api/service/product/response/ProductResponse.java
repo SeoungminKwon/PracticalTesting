@@ -36,7 +36,7 @@ public class ProductResponse {
                        .id(product.getId())
                        .productNumber(product.getProductNumber())
                        .type(product.getType())
-                       .sellingType(product.getSellingType())
+                       .sellingType(product.getSellingStatus())
                        .name(product.getName())
                        .price(product.getPrice())
                        .build();

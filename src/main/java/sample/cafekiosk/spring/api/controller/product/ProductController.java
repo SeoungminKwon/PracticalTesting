@@ -4,17 +4,20 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import sample.cafekiosk.spring.api.service.product.ProductService;
 import sample.cafekiosk.spring.api.service.product.response.ProductResponse;
 
 @RequiredArgsConstructor
-@Controller
+@RestController
 public class ProductController {
 
     private final ProductService productService;
 
     @GetMapping("/api/v1/products/selling")
     public List<ProductResponse> getSellingProducts() {
-        return productService.getSellingProducts();
+        List<ProductResponse> sellingProducts = productService.getSellingProducts();
+        System.out.println(sellingProducts);
+        return sellingProducts;
     }
 }
