@@ -27,9 +27,10 @@ public class OrderService {
         List<Product> products = findProductsBy(productNumbers);
 
         // 재고 차감 체크가 필요한 상품들 필터
-        products.stream()
-                .filter(product -> ProductType.containsStockType(product.getType()))
-                .collect(Collectors.toList());
+        List<String> stockProductNumbers = products.stream()
+                                       .filter(product -> ProductType.containsStockType(product.getType()))
+                                       .map(Product::getProductNumber)
+                                       .collect(Collectors.toList());
         // 재고 엔티티 조회
         // 상품별 counting
         // 재고 차감 시도
