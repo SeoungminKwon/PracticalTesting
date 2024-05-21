@@ -23,7 +23,7 @@ import sample.cafekiosk.spring.domain.product.ProductRepository;
 import sample.cafekiosk.spring.domain.product.ProductType;
 
 @ActiveProfiles("test")
-//@Transactional //해당 어노테이션 달아서 테스트마다 롤백 시킬 수 있음
+@Transactional //해당 어노테이션 달아서 테스트마다 롤백 시킬 수 있음
 @SpringBootTest
 //@DataJpaTest
 class OrderServiceTest {
@@ -40,13 +40,13 @@ class OrderServiceTest {
     @Autowired
     private OrderService orderService;
 
-    @AfterEach
-    void tearDown() {
-//        productRepository.deleteAll();
-        orderProductRepository.deleteAllInBatch();
-        productRepository.deleteAllInBatch(); //deleteAll vs deleteAllInBatch의 차이점은 다른 섹션에서 진행
-        orderRepository.deleteAllInBatch();
-    }
+//    @AfterEach
+//    void tearDown() {
+////        productRepository.deleteAll();
+//        orderProductRepository.deleteAllInBatch();
+//        productRepository.deleteAllInBatch(); //deleteAll vs deleteAllInBatch의 차이점은 다른 섹션에서 진행
+//        orderRepository.deleteAllInBatch();
+//    }
 
     @DisplayName("주문번호 리스트를 받아 주문을 생성한다.")
     @Test
