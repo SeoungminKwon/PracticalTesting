@@ -12,6 +12,7 @@ import sample.cafekiosk.spring.domain.order.Order;
 import sample.cafekiosk.spring.domain.order.OrderRepository;
 import sample.cafekiosk.spring.domain.product.Product;
 import sample.cafekiosk.spring.domain.product.ProductRepository;
+import sample.cafekiosk.spring.domain.product.ProductType;
 
 @RequiredArgsConstructor
 @Service
@@ -24,6 +25,14 @@ public class OrderService {
         List<String> productNumbers = request.getProductNumbers();
         //Product
         List<Product> products = findProductsBy(productNumbers);
+
+        // 재고 차감 체크가 필요한 상품들 필터
+        products.stream()
+                .filter(product -> ProductType.containsStockType(product.getType()))
+                .collect(Collectors.toList());
+        // 재고 엔티티 조회
+        // 상품별 counting
+        // 재고 차감 시도
 
         //Order
         Order order = Order.create(products, registeredDateTime);
